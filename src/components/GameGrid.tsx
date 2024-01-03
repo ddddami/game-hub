@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import axios, { AxiosError, CanceledError } from "axios";
 import { Text } from "@chakra-ui/react";
+import apiClient, { CanceledError } from "../services/api-client";
 
 interface Game {
   id: number;
@@ -13,17 +13,12 @@ interface FetchGamesResponse {
 
 const GameGrid = () => {
   const [games, setGames] = useState<Game[]>([]);
-  const [error, setError] = useState<AxiosError>();
+  const [error, setError] = useState("");
   useEffect(() => {
     const controller = new AbortController();
-    axios
-      .get<FetchGamesResponse>(
-        "https://api.rawg.io/api/games?key=" + import.meta.env.VITE_RAWG_API,
-        { signal: controller.signal }
-      )
-      .then((res) => {
-        setGames(res.data.results);
-      })
+    apiClient
+      .get<FetchGamesResponse>("games", { signal: controller.signal })
+      .then((res) => setGames(res.data.results))
       .catch((err) => {
         if (err instanceof CanceledError) return;
         setError(err);
@@ -35,7 +30,7 @@ const GameGrid = () => {
   }, []);
   return (
     <>
-      {error && <Text>{error.message}</Text>}
+      {error && <Text>{error}</Text>}
       <ul>
         {games.map((game) => (
           <li key={game.id}>{game.name}</li>
