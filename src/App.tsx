@@ -5,6 +5,7 @@ import GameGrid from "./components/GameGrid";
 const App = () => {
   return (
     <Grid
+      templateColumns={{ base: "1fr", lg: "200px" }}
       templateAreas={{ base: `"nav" "main"`, lg: `"nav nav" "aside main"` }}
     >
       <GridItem area="nav">
