@@ -6,4 +6,4 @@ export interface Genre {
   image_background: string;
 }
 
-export default () => ({ data: genres, isLoading: false, error: null });
+export default () => ({ data: genres, isLoading: false, error: "" });
