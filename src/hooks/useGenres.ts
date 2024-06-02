@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import axiosInstance from "../services/api-client";
-import { FetchResponse } from "./useData";
+import axiosInstance,{ FetchResponse } from "../services/api-client";
 import genres from "../data/genres";
 
 export interface Genre {
