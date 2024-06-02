@@ -1,4 +1,4 @@
-import axios, { CanceledError } from "axios";
+import axios, { AxiosRequestConfig, CanceledError } from "axios";
 
 export interface FetchResponse<T> {
   results: T[];
@@ -11,6 +11,12 @@ const axiosInstance = axios.create({
     key: import.meta.env.VITE_RAWG_API,
   },
 });
-
+class APIClient<T> {
+  endpoint: string;
+  constructor(endpoint: string) {
+    this.endpoint = endpoint;
+  }
+  getAll = (requestConfig?: AxiosRequestConfig) => axiosInstance.get<FetchResponse<T>>(this.endpoint, requestConfig).then(res => res.data)
+}
 export { CanceledError };
-export default axiosInstance;
+export default APIClient;
