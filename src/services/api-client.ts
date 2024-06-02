@@ -3,6 +3,7 @@ import axios, { AxiosRequestConfig, CanceledError } from "axios";
 export interface FetchResponse<T> {
   results: T[];
   count: number;
+  next: string | null;
 }
 
 const axiosInstance = axios.create({

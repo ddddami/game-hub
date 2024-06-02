@@ -1,4 +1,4 @@
-import { SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, Button, SimpleGrid, Text } from "@chakra-ui/react";
 import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
@@ -10,27 +10,48 @@ interface Props {
 }
 
 const GameGrid = ({ gameQuery }: Props) => {
-  const { data, error, isLoading } = useGames(gameQuery);
+  const {
+    data,
+    error,
+    isLoading,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
+  } = useGames(gameQuery);
   const skeletons = [1, 2, 3, 4, 5, 6];
   if (error) return <Text>{error.message}</Text>;
   return (
-    <SimpleGrid
-      columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
-      padding="10px"
-      spacing={8}
-    >
-      {isLoading &&
-        skeletons.map((s) => (
-          <GameCardContainer key={s}>
-            <GameCardSkeleton />
-          </GameCardContainer>
+    <Box padding="10px">
+      <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={8}>
+        {isLoading &&
+          skeletons.map((s) => (
+            <GameCardContainer key={s}>
+              <GameCardSkeleton />
+            </GameCardContainer>
+          ))}
+        {data?.pages.map((page) => (
+          <>
+            {page.results.map((game) => (
+              <GameCardContainer key={game.id}>
+                <GameCard game={game} />
+              </GameCardContainer>
+            ))}
+          </>
         ))}
-      {data?.results.map((game) => (
-        <GameCardContainer key={game.id}>
-          <GameCard game={game} />
-        </GameCardContainer>
-      ))}
-    </SimpleGrid>
+        {/* {data?.pages
+          .flatMap((page) => page.results)
+          .map((game) => (
+            <GameCardContainer key={game.id}>
+              <GameCard game={game} />
+            </GameCardContainer>
+          ))} */}
+      </SimpleGrid>
+      {hasNextPage && (
+        <Button onClick={() => fetchNextPage()} className="btn btn-primary">
+          {isFetchingNextPage ? 'Loading...' : 'Load more'}
+        </Button>
+      )}
+    </Box>
   );
 };
 
