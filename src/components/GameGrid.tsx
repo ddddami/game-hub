@@ -26,7 +26,7 @@ const GameGrid = ({ gameQuery }: Props) => {
       next={fetchNextPage}
       hasMore={hasNextPage}
       loader={<Spinner />}
-      endMessage={<Text>You're all caught up for now gee</Text>}
+      // endMessage={<Text>You're all caught up for now gee</Text>}
     >
       <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={8}>
         {isLoading &&
