@@ -28,8 +28,8 @@ const App = () => {
             <PlatformSelector />
             <SortSelector />
           </HStack>
+          <GameGrid />
         </Box>
-        <GameGrid />
       </GridItem>
     </Grid>
   );
