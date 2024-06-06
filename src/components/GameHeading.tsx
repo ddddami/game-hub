@@ -11,7 +11,7 @@ const GameHeading = () => {
   const platform = usePlatform(platformId);
   const heading = `${genre?.name || ""} ${platform?.name || ""} Games`;
   return (
-    <Heading marginY={4} as="h1">
+    <Heading marginBottom={4} as="h1">
       {heading}
     </Heading>
   );

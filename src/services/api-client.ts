@@ -17,7 +17,12 @@ class APIClient<T> {
   constructor(endpoint: string) {
     this.endpoint = endpoint;
   }
-  getAll = (requestConfig?: AxiosRequestConfig) => axiosInstance.get<FetchResponse<T>>(this.endpoint, requestConfig).then(res => res.data)
+  getAll = (requestConfig?: AxiosRequestConfig) =>
+    axiosInstance
+      .get<FetchResponse<T>>(this.endpoint, requestConfig)
+      .then((res) => res.data);
+  get = (id: string | number) =>
+    axiosInstance.get<T>(this.endpoint + "/" + id).then((res) => res.data);
 }
 export { CanceledError };
 export default APIClient;

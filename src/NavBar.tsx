@@ -5,7 +5,7 @@ import SearchInput from "./components/SearchInput";
 
 const NavBar = () => {
   return (
-    <HStack paddingLeft={"5px"} padding="10px" gap={{ base: 2, lg: 6 }}>
+    <HStack padding="10px" paddingBottom={"5px"} gap={{ base: 2, lg: 6 }}>
       <Image src={logo} boxSize={"60px"} />
       <SearchInput />
       <ColorModeSwitch />
