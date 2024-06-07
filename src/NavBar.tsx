@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <HStack padding="10px" paddingBottom={"5px"} gap={{ base: 2, lg: 6 }}>
-      <Link to="/home">
-        <Image src={logo} boxSize={"60px"} objectFit={"cover"} />
+      <Link to="/">
+        <Image src={logo} boxSize={"60px"} objectFit={"contain"} />
       </Link>
       <SearchInput />
       <ColorModeSwitch />
