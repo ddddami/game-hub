@@ -1,4 +1,5 @@
 import { SimpleGrid, Spinner, Text } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
@@ -22,7 +23,11 @@ const GameGrid = () => {
       loader={<Spinner />}
       // endMessage={<Text>You're all caught up for now gee</Text>}
     >
-      <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={8}>
+      <SimpleGrid
+        columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
+        spacing={8}
+        paddingTop={2}
+      >
         {isLoading &&
           skeletons.map((s) => (
             <GameCardContainer key={s}>
@@ -32,9 +37,11 @@ const GameGrid = () => {
         {data?.pages.map((page) => (
           <>
             {page.results.map((game) => (
-              <GameCardContainer key={game.id}>
-                <GameCard game={game} />
-              </GameCardContainer>
+              <Link to={"/games/" + game.slug}>
+                <GameCardContainer key={game.id}>
+                  <GameCard game={game} />
+                </GameCardContainer>
+              </Link>
             ))}
           </>
         ))}
