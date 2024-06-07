@@ -1,16 +1,15 @@
-import { HStack, Switch, Text, useColorMode } from "@chakra-ui/react";
+import { HStack, Icon, Switch, useColorMode } from "@chakra-ui/react";
+import { LuMoon, LuSun } from "react-icons/lu";
 
 const ColorModeSwitch = () => {
   const { toggleColorMode, colorMode } = useColorMode();
   return (
-    <HStack>
+    <HStack paddingRight={2}>
       <Switch
         isChecked={colorMode === "dark"}
         onChange={toggleColorMode}
       ></Switch>
-      <Text whiteSpace="nowrap">
-        {colorMode === "dark" ? "Dark Mode" : "Light Mode"}
-      </Text>
+      {colorMode === "dark" ? <Icon as={LuMoon} /> : <Icon as={LuSun} />}
     </HStack>
   );
 };

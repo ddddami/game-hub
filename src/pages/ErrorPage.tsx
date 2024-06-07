@@ -10,7 +10,7 @@ const ErrorPage = () => {
   const navigate = useNavigate();
   const error = useRouteError();
   return (
-    <Box padding={5}>
+    <Box paddingX={3}>
       <NavBar />
       <Heading pb={2}>Oopsie...</Heading>
       {isRouteErrorResponse(error) ? (
