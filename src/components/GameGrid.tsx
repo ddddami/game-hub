@@ -37,8 +37,8 @@ const GameGrid = () => {
         {data?.pages.map((page) => (
           <>
             {page.results.map((game) => (
-              <Link to={"/games/" + game.slug}>
-                <GameCardContainer key={game.id}>
+              <Link key={game.id} to={"/games/" + game.slug}>
+                <GameCardContainer>
                   <GameCard game={game} />
                 </GameCardContainer>
               </Link>
