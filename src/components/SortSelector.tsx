@@ -20,7 +20,7 @@ const SortSelector = () => {
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<IoChevronDown />}>
-        Order by: {currentSortOrder?.label || "Relevance"}
+        {currentSortOrder?.label || "Relevance"}
       </MenuButton>
       <MenuList>
         {sortOrders.map((sortOrder) => (
